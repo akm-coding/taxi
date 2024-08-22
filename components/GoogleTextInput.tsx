@@ -1,10 +1,10 @@
 import { View, Image } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import React from "react";
-import { GoogleInputProps } from "@/types/type";
-import { icons } from "@/constants";
 
-const googlePlacesApiKey = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
+import { icons } from "@/constants";
+import { GoogleInputProps } from "@/types/type";
+
+const googlePlacesApiKey = process.env.EXPO_PUBLIC_GOOGLE_PLACES_API_KEY;
 
 const GoogleTextInput = ({
   icon,
@@ -15,11 +15,11 @@ const GoogleTextInput = ({
 }: GoogleInputProps) => {
   return (
     <View
-      className={`flex flex-row items-center justify-center relative z-50 rounded-xl ${containerStyle} mb-5`}
+      className={`flex flex-row items-center justify-center relative z-50 rounded-xl ${containerStyle}`}
     >
       <GooglePlacesAutocomplete
         fetchDetails={true}
-        placeholder="Where you want to go"
+        placeholder="Search"
         debounce={200}
         styles={{
           textInputContainer: {
@@ -31,7 +31,9 @@ const GoogleTextInput = ({
             shadowColor: "#d4d4d4",
           },
           textInput: {
-            backgroundColor: textInputBackgroundColor || "white",
+            backgroundColor: textInputBackgroundColor
+              ? textInputBackgroundColor
+              : "white",
             fontSize: 16,
             fontWeight: "600",
             marginTop: 5,
@@ -39,7 +41,9 @@ const GoogleTextInput = ({
             borderRadius: 200,
           },
           listView: {
-            backgroundColor: textInputBackgroundColor || "white",
+            backgroundColor: textInputBackgroundColor
+              ? textInputBackgroundColor
+              : "white",
             position: "relative",
             top: 0,
             width: "100%",
