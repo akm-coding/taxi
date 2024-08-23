@@ -5,6 +5,7 @@ import { icons, images } from "@/constants";
 import { useLocationStore } from "@/store";
 import { useUser } from "@clerk/clerk-expo";
 import * as Location from "expo-location";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -132,7 +133,15 @@ export default function Page() {
 
   const handleSignOut = () => {};
 
-  const handleDesignationPress = () => {};
+  const handleDesignationPress = (location: {
+    latitude: number;
+    longitude: number;
+    address: string;
+  }) => {
+    setDestinationLocation(location);
+
+    router.push("/(root)/find-ride");
+  };
 
   useEffect(() => {
     (async () => {
